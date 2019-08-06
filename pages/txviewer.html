@@ -188,7 +188,7 @@ function checkTx(hash, tx, secretKey, account, secretKeyType) {
 
 function getTx(txHash, next) {
   $.ajax({
-    url: "http://cx.turbomine.co:17291/json_rpc",
+    url: "https://cxex.catalystcrypto.net/cxex-explorer/json_rpc",
     method: "POST",
     data: JSON.stringify({
       jsonrpc:"2.0",

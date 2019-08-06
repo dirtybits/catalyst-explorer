@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "name": "catalyst-explorer",
+  "alias": [
+    "www.cx-explorer.gq"
+  ],
+  "builds": [
+    {
+      "src": "**",
+      "use": "@now/static"
+    }
+  ]
+}
