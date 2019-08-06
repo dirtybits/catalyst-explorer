@@ -2,7 +2,7 @@
     <div class="card mg-t-20" id="blockInfo">
         <div class="card-header tx-medium bd-0 tx-white bg-primary-dark"><h3><span tkey="txViewerTitle">Conceal Transaction Viewer</span></h3></div>
         <div class="card-body card-body-info">
-            <div class="container">  
+            <div class="container">
                 <p><label tkey="txText1">This page allows viewing of private data in a transaction not viewable using the
                 <a href="http://explorer.conceal.network/" target = "_blank">Conceal Block Explorer</a>,
                 if you have the transaction hash, the recipient wallet address and either
@@ -15,7 +15,7 @@
                 </label></p>
             </div>
 
-            <div class="container">  
+            <div class="container">
                 <label class="rdiobox">
                     <input name="type" type="radio" id="secretKeySender" checked>
                     <span tkey="txTransactionKey">Secret transaction key provided by sender</span>
@@ -24,24 +24,24 @@
                     <input name="type" type="radio" id="secretKeyRecipient">
                     <span tkey="txViewKey">Secret view key owned by recipient</span>
                 </label>
-            </div>            
+            </div>
 
-            <div class="container mg-t-30">    
+            <div class="container mg-t-30">
                 <div class="form-group">
                     <label for="exampleInputEmail1" tkey="txTransactionHash">Transaction hash</label>
                     <input type="text" class="form-control" id="txHash" tplaceholder="txTransactionHashHint" placeholder="Enter your transaction hash" maxlength=64>
-                </div>                        
+                </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1" tkey="txRecipientWalletAddress">Recipient wallet address</label>
                     <input type="text" class="form-control" id="account" tplaceholder="txRecipientWalletAddressHint" placeholder="Enter the recipient wallet address" maxlength=98>
-                </div>                        
+                </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1" tkey="txTransactionSecretKey">Transaction secret key</label>
                     <input type="text" class="form-control" id="secretKey" tplaceholder="txTransactionSecretKeyHint" placeholder="Enter the transaction secret key" maxlength=64>
-                </div>                        
-            </div>            
+                </div>
+            </div>
             <p><center><button onclick="decode()" class="btn btn-primary-outline" id='button' tkey="btnShowTransaction">SHOW TRANSACTION</button></p></center>
-            
+
             <!-- general modal error dialog -->
             <div id="errorDialog" class="modal fade" style="display: none;" aria-hidden="true">
                 <div class="modal-dialog" role="document">
@@ -55,7 +55,7 @@
                     </div><!-- modal-body -->
                     </div><!-- modal-content -->
                 </div><!-- modal-dialog -->
-            </div>            
+            </div>
 
             <!-- general modal information dialog -->
             <div id="txDetails" class="modal fade" style="display: none; padding-right: 17px;">
@@ -75,7 +75,7 @@
                         </div>
                     </div>
                 </div><!-- modal-dialog -->
-            </div>            
+            </div>
         </div>
     </div>
 </div>
@@ -188,7 +188,7 @@ function checkTx(hash, tx, secretKey, account, secretKeyType) {
 
 function getTx(txHash, next) {
   $.ajax({
-    url: "https://explorer.conceal.network/daemon/json_rpc",
+    url: "http://cx.turbomine.co:17291/json_rpc",
     method: "POST",
     data: JSON.stringify({
       jsonrpc:"2.0",

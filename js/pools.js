@@ -148,8 +148,12 @@ var displayChart = function displayChart() {
 
 var lazyRefreshChart = debounce(displayChart, 50, true);
 
-$.getJSON(poolListUrl, function (data, textStatus, jqXHR) {
-  poolList = data;
+// $.getJSON(poolListUrl, function (data, textStatus, jqXHR) {
+  // poolList = data;
+  poolList = [
+    ["cx.turbomine.co","https://cx.turbomine.co:8124","Turbomine","1"],
+    ["cx-pool.gq","https://pool.cx-pool.gq","cx-pool","1"],
+  ];
 
   poolList.forEach(function (element) {
     var url = element[1];
@@ -221,7 +225,7 @@ $.getJSON(poolListUrl, function (data, textStatus, jqXHR) {
       });
     }
   });
-});
+// });
 
 
 setInterval(function () {

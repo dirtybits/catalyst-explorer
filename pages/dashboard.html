@@ -5,7 +5,7 @@
         <h4 class="tx-white mg-b-5" tkey="welcome">Welcome</h4>
         <p class="mg-b-0" id="currentDate"></p>
       </div>
-      <div class="d-h-t-right" id="depositsSection">
+<!--       <div class="d-h-t-right" id="depositsSection">
         <div class="summary-item">
           <h1 id="interestToDate">N/A</h1>
           <span tkey="earnedToDate">Interest<br>earned to date</span>
@@ -14,7 +14,7 @@
           <h1 id="totalBanked">N/A</h1>
           <span tkey="totalBanked">Total<br>banked</span>
         </div>
-      </div>
+      </div> -->
     </div><!-- dash-headline-two -->
 
     <div class="nav-statistics-wrapper">
@@ -44,8 +44,7 @@
         <h4 class="tx-white mg-b-3" tkey="netOverallSummary">Overall Network Summary</h4>
       </div>
       <div>
-        <a href="https://conceal.network/#about" class="btn btn-primary-outline" tkey="aboutConcealNetwork">About
-          Conceal Network</a>
+        <a href="https://medium.com/@CatalystNetwork/catalyst-introduction-88d57d65a763" class="btn btn-primary-outline" tkey="aboutConcealNetwork">About Catalyst Network</a>
       </div>
     </div><!-- d-flex -->
 
@@ -76,38 +75,38 @@
 
     <div class="report-summary-header">
       <div>
-        <h4 class="tx-white mg-b-3" tkey="supplyAndBanking">Supply & Banking</h4>
+        <h4 class="tx-white mg-b-3" tkey="supplyAndBanking">Supply</h4>
       </div>
-      <div>
+<!--       <div>
         <a href="https://conceal.network/#features" class="btn btn-primary-outline" tkey="aboutConcealBanking">About
           Conceal Banking</a>
-      </div>
+      </div> -->
     </div><!-- d-flex -->
 
     <div class="card card-dash-one mg-t-20">
       <div class="row no-gutters">
         <div class="col-lg-4">
           <div class="dash-content">
-            <label class="tx-primary" id="totalBanked" tkey="totalBanked">Total Banked</label>
+            <label class="tx-primary" id="totalBanked" tkey="totalBanked">Current Reward</label>
             <label class="tx-primary" id="depositCoinsPct"></label><BR>
-            <label class="tx-secondary" tkey="totalBankedInfo">Total funds locked in deposits and investments</label>
-            <h2><span id="depositCoins">N/A</span></h2>
+            <label class="tx-secondary" tkey="totalBankedInfo">Current block reward</label>
+            <h2><span id="currentReward">N/A</span></h2>
           </div><!-- dash-content -->
         </div><!-- col-4 -->
         <div class="col-lg-4">
           <div class="dash-content dash-small-info">
             <label class="tx-primary" tkey="circulatingSuppy">Circulating Supply</label>
             <label class="tx-primary" id="emissionPercentPct""></label><BR>
-            <label class=" tx-secondary" tkey="circulatingSuppyInfo">The total number of coins not banked.</label>
+            <label class=" tx-secondary" tkey="circulatingSuppyInfo">The total number of coins mined to date.</label>
             <h2><span id="emissionPercent">N/A</span></h2>
           </div><!-- dash-content -->
         </div><!-- col-4 -->
         <div class="col-lg-4">
           <div class="dash-content dash-small-info">
             <label class="tx-primary" tkey="totalSupply">Total Supply</label>
-            <label class="tx-primary" id="totalCoinsPct">(100%)</label><BR>
-            <label class="tx-secondary" tkey="totalSupplyInfo">The total supply minted to date.</label>
-            <h2><span id="totalCoins">N/A</span></h2>
+            <label class="tx-primary" id="totalCoinsPct"></label><BR>
+            <label class="tx-secondary" tkey="totalSupplyInfo">The total supply.</label>
+            <h2><span id="totalCoins">77M</span></h2>
           </div><!-- dash-content -->
         </div><!-- col-4 -->
       </div><!-- row -->
@@ -125,7 +124,7 @@
         <div class="col-lg-3">
           <div class="dash-content dash-small-info dash-market">
             <div class="info-text">
-              <label class="tx-primary" tkey="mktCCXToUSD">CCX to USD</label>
+              <label class="tx-primary" tkey="mktCCXToUSD">CX to USD</label>
               <h2><span id="CCXToUSD">N/A</h2>
             </div>
             <div class="icon icon-info">
@@ -136,7 +135,7 @@
         <div class="col-lg-3">
           <div class="dash-content dash-small-info dash-market">
             <div class="info-text">
-              <label class="tx-primary" tkey="mktCCXToBTC">CCX to BTC</label>
+              <label class="tx-primary" tkey="mktCCXToBTC">CX to LTC</label>
               <h2><span id="CCXToBTC">N/A</span></h2>
             </div>
             <div class="icon icon-info">
@@ -170,10 +169,10 @@
       </div><!-- row -->
     </div>
 
-    <div id="chartMarketPrice">
+<!--     <div id="chartMarketPrice">
       <canvas id="chartMarketPriceCanvas"></canvas>
       <a class="chart-style"></a>
-    </div>
+    </div> -->
 
     <!-- Mining Profit Calculator -->
     <div class="card mg-t-20" id="miningProfitCalc">
@@ -197,7 +196,7 @@
           <span class="input-group-addon" id="calcHashResultsHolder">
             <div id="calcHashAmount">
               <span id="calcHashAmount1"></span>
-              <span id="calcHashSymbol"> CCX</span>
+              <span id="calcHashSymbol"> CX</span>
               <span id="calcHashAmount2"></span>
             </div>
             <div id="calcHashPeriod">
@@ -230,10 +229,11 @@
 
   // Calculate current estimation
   function calcEstimateProfit() {
+
     try {
       var rateUnit = Math.pow(1000, parseInt($('#calcHashUnit').data('mul')));
       var hashRate = parseFloat($('#calcHashRate').val()) * rateUnit;
-      var profit = (hashRate * 86400 / lastStats.difficulty) * lastStats.last_block_reward;
+      var profit = (hashRate * 86400 / lastStats.difficulty) * block.baseReward;
       if (profit) {
         var actualCoins = getReadableCoins(profit, 2, true);
         updateText('calcHashAmount1', actualCoins);
@@ -279,91 +279,101 @@
         }
       });
 
+      var cxToLTC = `0.0000021`
+      var cxToUSD = `0.00021`
+
+      USDperCCX = cxToUSD;
+      $("#CCXToUSD").html("$ " + cxToUSD);
+      $("#CCXToBTC").html(cxToLTC);
+      $("#marketcap").html("$ < 1000 " );
+      $("#marketcapRank").html("(RANK > 1000)");
+      $("#dailyVolume").html("$ < 1000");
+
       // get conceal market data
-      $.getJSON("https://api.coingecko.com/api/v3/coins/conceal?sparkline=true", function (data) {
-        USDperCCX = data.market_data.current_price.usd;
-        $("#CCXToUSD").html("$ " + localizeNumber(data.market_data.current_price.usd.toFixed(2)));
-        $("#CCXToBTC").html(data.market_data.current_price.btc.toFixed(8));
-        $("#marketcap").html("$ " + localizeNumber(data.market_data.market_cap.usd.toFixed(0)));
-        $("#marketcapRank").html("(RANK " + data.market_cap_rank + ")");
-        $("#dailyVolume").html("$ " + localizeNumber(data.market_data.total_volume.usd.toFixed(0)));
+      // $.getJSON("https://api.coingecko.com/api/v3/coins/conceal?sparkline=true", function (data) {
+        // USDperCCX = data.market_data.current_price.usd;
+        // $("#CCXToUSD").html("$ " + localizeNumber(data.market_data.current_price.usd.toFixed(2)));
+        // $("#CCXToBTC").html(data.market_data.current_price.btc.toFixed(8));
+        // $("#marketcap").html("$ " + localizeNumber(data.market_data.market_cap.usd.toFixed(0)));
+        // $("#marketcapRank").html("(RANK " + data.market_cap_rank + ")");
+        // $("#dailyVolume").html("$ " + localizeNumber(data.market_data.total_volume.usd.toFixed(0)));
 
-        if (marketPriceAreaChart) {
-          marketPriceAreaChart.destroy();
-        }
+        // if (marketPriceAreaChart) {
+        //   marketPriceAreaChart.destroy();
+        // }
 
-        var timeLabels = [];
-        var dataLength = data.market_data.sparkline_7d.price.length;
-        var durationAsMS = moment.duration(7 / dataLength, 'd').asMilliseconds();
+        // var timeLabels = [];
+        // var dataLength = data.market_data.sparkline_7d.price.length;
+        // var durationAsMS = moment.duration(7 / dataLength, 'd').asMilliseconds();
 
-        for (i = dataLength - 1; i >= 0; i--) {
-          timeLabels.push(moment().subtract(durationAsMS * (i + 1), 'ms').format('YYYY-MM-DD'));
-        }
+        // for (i = dataLength - 1; i >= 0; i--) {
+        //   timeLabels.push(moment().subtract(durationAsMS * (i + 1), 'ms').format('YYYY-MM-DD'));
+        // }
 
-        marketPriceAreaChart = new Chart(document.getElementById('chartMarketPriceCanvas'), {
-          type: 'line',
-          data: {
-            labels: timeLabels,
-            datasets: [{
-              data: smooth(data.market_data.sparkline_7d.price, 3),
-              backgroundColor: 'rgba(255,165,0,0.2)',
-              fill: true,
-              borderWidth: 0,
-              pointRadius: 1,
-              borderColor: '#FFA500'
-            }]
-          },
-          options: {
-            animation: false,
-            responsive: true,
-            maintainAspectRatio: false,
-            legend: {
-              display: false,
-              labels: {
-                display: false
-              }
-            },
-            scales: {
-              yAxes: [{
-                ticks: {
-                  maxTicksLimit: 5,
-                  fontSize: 10,
-                  callback: function (value, index, values) {
-                    return '$' + value.toFixed(2);
-                  }
-                },
-                gridLines: {
-                  color: 'rgba(255,255,255,.08)'
-                }
-              }],
-              xAxes: [{
-                ticks: {
-                  autoSkip: true,
-                  maxTicksLimit: 7,
-                  maxRotation: 0,
-                  minRotation: 0
-                },
-                gridLines: {
-                  color: 'rgba(255, 255, 255, .08)'
-                },
-              }]
-            },
-            hover: {
-              mode: 'nearest',
-              intersect: true
-            },
-            tooltips: {
-              mode: 'index',
-              intersect: false,
-              callbacks: {
-                label: function (tooltipItem) {
-                  return "$ " + Number(tooltipItem.yLabel).toFixed(4);
-                }
-              }
-            }
-          }
-        });
-      });
+        // marketPriceAreaChart = new Chart(document.getElementById('chartMarketPriceCanvas'), {
+        //   type: 'line',
+        //   data: {
+        //     labels: timeLabels,
+        //     datasets: [{
+        //       data: smooth(data.market_data.sparkline_7d.price, 3),
+        //       backgroundColor: 'rgba(255,165,0,0.2)',
+        //       fill: true,
+        //       borderWidth: 0,
+        //       pointRadius: 1,
+        //       borderColor: '#FFA500'
+        //     }]
+        //   },
+        //   options: {
+        //     animation: false,
+        //     responsive: true,
+        //     maintainAspectRatio: false,
+        //     legend: {
+        //       display: false,
+        //       labels: {
+        //         display: false
+        //       }
+        //     },
+        //     scales: {
+        //       yAxes: [{
+        //         ticks: {
+        //           maxTicksLimit: 5,
+        //           fontSize: 10,
+        //           callback: function (value, index, values) {
+        //             return '$' + value.toFixed(2);
+        //           }
+        //         },
+        //         gridLines: {
+        //           color: 'rgba(255,255,255,.08)'
+        //         }
+        //       }],
+        //       xAxes: [{
+        //         ticks: {
+        //           autoSkip: true,
+        //           maxTicksLimit: 7,
+        //           maxRotation: 0,
+        //           minRotation: 0
+        //         },
+        //         gridLines: {
+        //           color: 'rgba(255, 255, 255, .08)'
+        //         },
+        //       }]
+        //     },
+        //     hover: {
+        //       mode: 'nearest',
+        //       intersect: true
+        //     },
+        //     tooltips: {
+        //       mode: 'index',
+        //       intersect: false,
+        //       callbacks: {
+        //         label: function (tooltipItem) {
+        //           return "$ " + Number(tooltipItem.yLabel).toFixed(4);
+        //         }
+        //       }
+        //     }
+        //   }
+        // });
+      // });
     },
     update: function () {
       renderLastBlock();
@@ -376,11 +386,7 @@
   };
 
   function renderLastBlock() {
-    $.getJSON("https://explorer.conceal.network/daemon/getinfo", function (data) {
-      updateText('interestToDate', getReadableCoins2(data.full_deposit_interest, 0));
-      updateText('totalBanked', getReadableCoins2(data.full_deposit_amount, 0));
-
-      $.ajax({
+          $.ajax({
         url: api + '/json_rpc',
         method: "POST",
         data: JSON.stringify({
@@ -409,21 +415,36 @@
             cache: 'false',
             success: function (data) {
               block = data.result.block;
-              circulating_supply = block.alreadyGeneratedCoins - last_block_deposts;
-              circulating_supply_pct = ((circulating_supply / block.alreadyGeneratedCoins) * 100).toFixed(2);
-              last_block_deposts_pct = ((last_block_deposts / block.alreadyGeneratedCoins) * 100).toFixed(2);
-              updateText('totalCoins', getReadableCoins2(block.alreadyGeneratedCoins, 0));
-              updateText('emissionPercent', getReadableCoins2(circulating_supply, 0));
-              updateText('emissionPercentPct', "(" + circulating_supply_pct + "%)");
-              updateText('currentReward', getReadableCoins(block.baseReward, 0));
-              updateText('depositCoins', getReadableCoins2(last_block_deposts, 0));
-              updateText('depositCoinsPct', "(" + last_block_deposts_pct + "%)");
+              // circulating_supply = block.alreadyGeneratedCoins - last_block_deposts;
+              // circulating_supply_pct = ((circulating_supply / block.alreadyGeneratedCoins) * 100).toFixed(2);
+              // last_block_deposts_pct = ((last_block_deposts / block.alreadyGeneratedCoins) * 100).toFixed(2);
+              // updateText('totalCoins', getReadableCoins2(block.alreadyGeneratedCoins, 0));
+
+
+              var fu = Number(block.alreadyGeneratedCoins) / 10000000;
+              var g = fu.toLocaleString('en', {
+                        minimumFractionDigits: 4,
+                        maximumFractionDigits: 4
+                      });
+              var per = 100 * fu/77000000
+              updateText('emissionPercent', g);
+              updateText('emissionPercentPct', "(" + per.toFixed(2) + "%)");
+
+
+              updateText('currentReward', (block.baseReward / 10000000).toFixed(2));
+              // updateText('depositCoins', getReadableCoins2(last_block_deposts, 0));
+              // updateText('depositCoinsPct', "(" + last_block_deposts_pct + "%)");
 
             }
           });
         }
       });
-    });
+    // $.getJSON("https://explorer.conceal.network/daemon/getinfo", function (data) {
+    //   // updateText('interestToDate', getReadableCoins2(data.full_deposit_interest, 0));
+    //   // updateText('totalBanked', getReadableCoins2(data.full_deposit_amount, 0));
+
+
+    // });
   }
 
   function renderDiffChart(blocksData) {

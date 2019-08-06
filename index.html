@@ -2,21 +2,11 @@
 <html>
 
 <head lang="en">
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-144985314-2"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-144985314-2');
-  </script>
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1">
   <link rel="shortcut icon" href="favicon.ico">
   <link rel="icon" type="image/icon" href="favicon.ico">
-  <title>Conceal.Network - Block Explorer</title>
+  <title>Catalyst.Network - Block Explorer</title>
   <!-- vendor css -->
   <link href="lib/font-awesome/css/font-awesome.css" rel="stylesheet">
   <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -57,7 +47,7 @@
   <div class="slim-header">
     <div class="container">
       <div class="slim-header-left">
-        <img src="img/logo.svg" width="48" height="58">
+        <img src="img/logo.png" width="58" height="58">
         <div class="logoText">
           <h2 class="slim-logo">
             <a href="index.html">
@@ -78,7 +68,7 @@
           </button>
         </div>
         <!-- search-box -->
-        <div id="langSelector">
+<!--         <div id="langSelector">
           <select id="newLang" class="form-control form-control-sm select2">
             <option value="en" selected="selected">English</option>
             <option value="es">Español</option>
@@ -89,7 +79,7 @@
             <option value="ko">한국어</option>
             <option value="zh-CN">简体中文</option>
           </select>
-        </div>
+        </div> -->
       </div>
       <!-- header-right -->
     </div>
@@ -119,18 +109,23 @@
           </a>
         </li>
         <li class="nav-item">
+          <a class="nav-link hot_link" style="border-right-width:1px;" data-page="txviewer.html" href="#txviewer">
+            <i class="icon ion-ios-book-outline"></i><span tkey=" txViewer">TX Viewer</span>
+          </a>
+        </li>
+<!--         <li class="nav-item">
           <a class="nav-link hot_link" data-page="funds.html" href="#funds">
             <i class="icon ion-social-bitcoin-outline"></i>
             <span tkey="txFunds">Funds</span>
           </a>
-        </li>
-        <li class="nav-item">
+        </li> -->
+<!--         <li class="nav-item">
           <a class="nav-link hot_link nav-link-last" data-page="nodes.html" href="#nodes">
             <i class="icon ion-ios-chatboxes-outline"></i>
             <span tkey="nodes">Nodes</span>
           </a>
-        </li>
-        <li class="nav-item with-sub">
+        </li> -->
+<!--         <li class="nav-item with-sub">
           <a class="nav-link" href="#" data-toggle="dropdown" id="toolsNavItem">
             <i class="icon ion-ios-analytics-outline"></i>
             <span tkey="resources">Tools</span>
@@ -158,8 +153,8 @@
                 </a>
               </li>
             </ul>
-          </div><!-- dropdown-menu -->
-        </li>
+          </div>
+        </li> -->
 
         <li class="nav-item" style="display:none;">
           <a class="hot_link" data-page="blockchain_block.html" href="#blockchain_block">
@@ -193,7 +188,7 @@
 
   <div class="slim-footer" id="explorerFooter">
     <div class="container">
-      <p>Copyright 2018-2019 &copy; All Rights Reserved. Conceal Network</p>
+      <p> 2018 - 2019 &copy; Catalyst Labs, Theme &copy; Conceal Network</p>
     </div>
     <!-- container -->
   </div>
