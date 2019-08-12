@@ -152,7 +152,7 @@ var lazyRefreshChart = debounce(displayChart, 50, true);
   // poolList = data;
   poolList = [
     ["cx.turbomine.co","https://cx.turbomine.co:8124","Turbomine","1"],
-    ["cx-pool.gq","https://pool.cx-pool.gq","cx-pool","1"],
+    ["cx-pool.gq","https://pool.cx-pool.gq/cat","cx-pool","1"],
   ];
 
   poolList.forEach(function (element) {
